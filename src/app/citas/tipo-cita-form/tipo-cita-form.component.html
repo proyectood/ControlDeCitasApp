@@ -1,0 +1,18 @@
+<form novalidate autocomplete="off" #formTipo="ngForm" (submit)="onSubmit(formTipo)">
+    <input type="hidden" name="folio" [value]="service.formTiposDeCita.id" />
+    <div class="form-group">
+        <label>Tipo de cita</label>
+        <input type="text" class="form-control form-control-lg" placeholder="Nombre o descripción del tipo de cita"
+                name="descripcion" #descripcion="ngModel" [(ngModel)]="service.formTiposDeCita.descripcion"
+                required [class.invalid]="descripcion.invalid && descripcion.touched"  
+                maxlength="50" minlength="3"/>
+    </div>
+    <div class="form-group row my-3 justify-content-md-center">
+        <div class="col-5">
+            <button class="btn btn-danger btn-lg btn-block" type="button" (click)="regresaMenuAgregar()">Cancelar</button>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="formTipo.invalid">Guardar Tipo Nuevo</button>
+        </div>
+    </div>
+</form>

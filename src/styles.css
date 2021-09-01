@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+#menuDiv{
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    border-bottom: 2px solid #6f6f6f;
+}
+
+.nav-link:hover{
+    font-weight: bold;
+    color: #63a2ff !important;
+}
+
+.nav-link{
+    font-weight: lighter;
+    color: #0064ce !important
+}
+
+.form-group label{
+    color: grey;
+}
+
+.form-group input{
+    font-weight: 500;
+}
+
+.form-group input::placeholder{
+    color: #c0bdbd;
+    font-weight: 300;
+}
+
+thead th{
+    font-weight: bold;
+}
+
+table tbody tr:hover{
+    background-color: #bebebe;
+}
+
+.far{
+    cursor: pointer;
+}
+
+input.invalid{
+    border-color: red;
+}
+
+select.invalid{
+    border-color: red;
+}

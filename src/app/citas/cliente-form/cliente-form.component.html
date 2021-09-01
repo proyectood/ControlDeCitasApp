@@ -1,0 +1,26 @@
+<form novalidate autocomplete="off" #formCte="ngForm" (submit)="onSubmit(formCte)">
+    <input type="hidden" name="folio" [value]="service.formClientes.id" />
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" class="form-control form-control-lg" placeholder="Nombre Completo"
+                name="nombre" #nombre="ngModel" [(ngModel)]="service.formClientes.nombre"
+                required [class.invalid]="nombre.invalid && nombre.touched"  
+                maxlength="50" minlength="10"/>
+    </div>
+    <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" class="form-control form-control-lg" placeholder="E-mail del cliente"
+                name="email" #email="ngModel" [(ngModel)]="service.formClientes.email"
+                required [class.invalid]="email.invalid && email.touched" 
+                maxlength="50" minlength="8"/>
+    </div>
+    <div class="form-group row my-3 justify-content-md-center">
+        <div class="col-5">
+            <button class="btn btn-danger btn-lg btn-block" type="button" (click)="regresaMenuAgregar()">Cancelar</button>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="formCte.invalid">Guardar Cliente Nuevo</button>
+        </div>
+    </div>
+</form>
+

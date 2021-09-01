@@ -1,0 +1,125 @@
+<form novalidate autocomplete="off" #form="ngForm"  (submit)="onSubmit(form)">
+    <input type="hidden" name="folio" [value]="service.formData.folio" />
+    <input type="hidden" name="fechaDeSolicitud" 
+            name="fechaDeSolicitud" #fechaDeSolicitud="ngModel" [(ngModel)]="service.formData.fechaDeSolicitud"/>
+    <div class="row">
+        <div class="form-group col-11">
+            <label>Cliente</label>
+            <select class="form-select form-select-sm"
+                    name="cliente_fk" #cliente_fk="ngModel" [(ngModel)]="service.formData.cliente_fk"
+                    required [class.invalid]="cliente_fk.invalid && cliente_fk.touched || cliente_fk.value == 0">
+                <option disabled value="0">Cliente</option>
+                <option *ngFor="let cliente of service.listaClientes" [value]="cliente.id">{{ cliente.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(1)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-11">
+            <label>Empresa</label>
+            <select class="form-select form-select-sm"
+                    name="empresaCliente_fk" #empresaCliente_fk="ngModel" [(ngModel)]="service.formData.empresaCliente_fk"
+                    required [class.invalid]="empresaCliente_fk.invalid && empresaCliente_fk.touched || empresaCliente_fk.value == 0">
+                <option disabled value="0">Empresa</option>
+                <option *ngFor="let empresa of service.listaEmpresas" [value]="empresa.id">{{ empresa.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(2)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-11">
+            <label>Departamento Responsable</label>
+            <select class="form-select form-select-sm"
+                    name="departamentoResponsable_fk" #departamentoResponsable_fk="ngModel" [(ngModel)]="service.formData.departamentoResponsable_fk"
+                    required [class.invalid]="departamentoResponsable_fk.invalid && departamentoResponsable_fk.touched || departamentoResponsable_fk.value == 0">
+                <option disabled value="0">Departamento Responsable</option>
+                <option *ngFor="let departamentoResponsable of service.listaDepartamentosResponsables" [value]="departamentoResponsable.id">{{ departamentoResponsable.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(3)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-5">
+            <label>Tipo De Cita</label>
+            <select class="form-select form-select-sm"
+                    name="tipoDeCita_fk" #tipoDeCita_fk="ngModel" [(ngModel)]="service.formData.tipoDeCita_fk"
+                    required [class.invalid]="tipoDeCita_fk.invalid && tipoDeCita_fk.touched || tipoDeCita_fk.value == 0">
+                <option disabled value="0">Tipo De Cita</option>
+                <option *ngFor="let tipoDeCita of service.listaTiposDeCita" [value]="tipoDeCita.id">{{ tipoDeCita.descripcion }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(4)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+        <div class="form-group col-5 offset-1">
+            <label>Fecha De La Cita</label>
+            <input type="date" class="form-control form-control-sm" placeholder="Fecha de la cita"
+                    name="fechaParaLaCita" #fechaParaLaCita="ngModel" [(ngModel)]="service.formData.fechaParaLaCita"
+                    required [class.invalid]="fechaParaLaCita.invalid && fechaParaLaCita.touched" />
+        </div>
+    </div>
+
+   
+    <div class="form-group">
+        <label>Asunto</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Asunto de la cita"
+                name="asuntoDeCita" #asuntoDeCita="ngModel" [(ngModel)]="service.formData.asuntoDeCita"
+                required [class.invalid]="asuntoDeCita.invalid && asuntoDeCita.touched" />
+    </div>
+    
+    <div class="row">
+        <div class="form-group col-11">
+            <label>Estatus De La Atención</label>
+            <select class="form-select form-select-sm"
+                    name="estatusDeLaAtencion_fk" #estatusDeLaAtencion_fk="ngModel" [(ngModel)]="service.formData.estatusDeLaAtencion_fk"
+                    required [class.invalid]="estatusDeLaAtencion_fk.invalid && estatusDeLaAtencion_fk.touched || estatusDeLaAtencion_fk.value == 0" >
+                <option disabled value="0">Estatus De La Atención</option>
+                <option *ngFor="let estatusDeLaAtencion of service.listaEstatusDeAtencion" [value]="estatusDeLaAtencion.id">{{ estatusDeLaAtencion.descripcion }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(5)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-11">
+            <label>Responsable</label>
+            <select class="form-select form-select-sm"
+                    name="responsable_fk" #responsable_fk="ngModel" [(ngModel)]="service.formData.responsable_fk"
+                    required [class.invalid]="responsable_fk.invalid && responsable_fk.touched || responsable_fk.value == 0" >
+                <option disabled value="0">Responsable</option>
+                <option *ngFor="let responsable of service.listaResponsables" [value]="responsable.id">{{ responsable.nombre }}</option>
+            </select>
+        </div>
+        <div class="form-group col-1 text-center">
+            <br>
+            <p class="btn btn-light btn-sm btn-block" (click)="verFormAgregar(6)"><i class="fas fa-plus fa-sm text-primary"></i>  </p>   
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Comentarios</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Comentarios"
+                name="comentarios" #comentarios="ngModel" [(ngModel)]="service.formData.comentarios">
+    </div>
+    <div class="form-group row my-3 justify-content-md-center">
+        <div class="col-5">
+            <p class="btn btn-danger btn-sm btn-block" type="button" (click)="regresarListado()">Cancelar</p>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary btn-sm btn-block" type="submit" [disabled]="form.invalid">Guardar Cambios</button>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,98 @@
+<div class="jumbotron">
+    <h1 class="display-5 text-center">Control De Citas</h1>
+</div>
+
+<div id="menuDiv" class="row py-4">
+    <div class="col-8">
+        <ul class="nav justify-content-start">
+            <li class="nav-item">
+            <a class="nav-link active" href="#" (click)="accionMenu(1)">Listado de citas</a>
+            </li>
+            <li class="nav-item">
+            <a id="mnuAgregar" class="nav-link" href="#" (click)="accionMenu(2)">Agregar Cita</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-4">
+        <input class="form-control" placeholder="Buscar..."
+        name="buscarTxt" #buscarTxt="ngModel" [(ngModel)]="service.buscarTxt">
+    </div>
+</div>
+
+<div id="tblCitas" class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead class="thead-light">
+                <th>Folio</th>
+                <th>Solicitud</th>
+                <th>Tipo</th>
+                <th>Cliente</th>
+                <th>Empresa</th>
+                <th>Departamento</th>
+                <th>Asunto</th>
+                <th>Comentarios</th>
+                <th>Responsable</th>
+                <th>Fecha/Cita</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cita of service.listaCitas | filtro:service.buscarTxt:service.listaTiposDeCita:service.listaClientes:service.listaEmpresas:service.listaDepartamentosResponsables:service.listaResponsables:service.listaEstatusDeAtencion">
+                    <td>{{ cita.folio }}</td>
+                    <td>{{ cita.fechaDeSolicitud | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ service.listaTiposDeCita[cita.tipoDeCita_fk-1].descripcion }}</td>
+                    <td>{{ service.listaClientes[cita.cliente_fk-1].nombre || '' }}</td>
+                    <td>{{ service.listaEmpresas[cita.empresaCliente_fk-1].nombre || 'no' }}</td>
+                    <td>{{ service.listaDepartamentosResponsables[cita.departamentoResponsable_fk-1].nombre || 'no' }}</td>
+                    <td>{{ cita.asuntoDeCita }}</td>
+                    <td>{{ cita.comentarios }}</td>
+                    <td>{{ service.listaResponsables[cita.responsable_fk-1].nombre || 'no' }}</td>
+                    <td>{{ cita.fechaParaLaCita | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ service.listaEstatusDeAtencion[cita.estatusDeLaAtencion_fk-1].descripcion || 'no' }}</td>
+                    <td>
+                        <i class="far fa-edit fa-lg text-info mx-1" (click)="editarRegistro(cita)"></i>
+                        <i class="far fa-trash-alt fa-lg text-danger mx-1" (click)="eliminarRegistro(cita.folio)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="formCitas" class="row">
+    <div class="col-6 offset-3">
+        <app-citas-form></app-citas-form>
+    </div>
+</div>
+
+<div id="formClientes" class="row">
+    <div class="col-6 offset-3">
+        <app-cliente-form></app-cliente-form>
+    </div>
+</div>
+<div id="formEmpresas" class="row">
+    <div class="col-6 offset-3">
+        <app-empresa-form></app-empresa-form>
+    </div>
+</div>
+<div id="formDepartamentos" class="row">
+    <div class="col-6 offset-3">
+        <app-departamento-responsable-form></app-departamento-responsable-form>
+    </div>
+</div>
+<div id="formTipos" class="row">
+    <div class="col-6 offset-3">
+        <app-tipo-cita-form></app-tipo-cita-form>
+    </div>
+</div>
+<div id="formEstatus" class="row">
+    <div class="col-6 offset-3">
+        <app-estatus-form></app-estatus-form>
+    </div>
+</div>
+<div id="formResponsables" class="row">
+    <div class="col-6 offset-3">
+        <app-responsable-form></app-responsable-form>
+    </div>
+</div>
+

@@ -1,0 +1,18 @@
+<form novalidate autocomplete="off" #formResponsable="ngForm" (submit)="onSubmit(formResponsable)">
+    <input type="hidden" name="folio" [value]="service.formResponsables.id" />
+    <div class="form-group">
+        <label>Nombre del responsable</label>
+        <input type="text" class="form-control form-control-lg" placeholder="Nombre completo del responsable"
+                name="nombre" #nombre="ngModel" [(ngModel)]="service.formResponsables.nombre"
+                required [class.invalid]="nombre.invalid && nombre.touched"  
+                maxlength="100" minlength="3"/>
+    </div>
+    <div class="form-group row my-3 justify-content-md-center">
+        <div class="col-5">
+            <button class="btn btn-danger btn-lg btn-block" type="button" (click)="regresaMenuAgregar()">Cancelar</button>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="formResponsable.invalid">Guardar Responsable Nuevo</button>
+        </div>
+    </div>
+</form>
