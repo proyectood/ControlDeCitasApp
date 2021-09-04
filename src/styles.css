@@ -36,6 +36,13 @@ table tbody tr:hover{
     background-color: #bebebe;
 }
 
+.sin-registros{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #e80000  !important;
+}
+
 .far{
     cursor: pointer;
 }

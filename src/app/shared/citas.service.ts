@@ -107,6 +107,7 @@ export class CitasService {
     this.obtenerEstatusDeAtencion();
     this.obtenerResponsables();
     this.obtenerCitas();
+    console.log('Carga de listado de citas ', this.listaCitas.length);
   }
 
   revisionFolio(){

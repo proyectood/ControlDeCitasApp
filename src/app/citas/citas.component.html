@@ -38,20 +38,23 @@
             </thead>
             <tbody>
                 <tr *ngFor="let cita of service.listaCitas | filtro:service.buscarTxt:service.listaTiposDeCita:service.listaClientes:service.listaEmpresas:service.listaDepartamentosResponsables:service.listaResponsables:service.listaEstatusDeAtencion">
-                    <td>{{ cita.folio }}</td>
-                    <td>{{ cita.fechaDeSolicitud | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{ service.listaTiposDeCita[cita.tipoDeCita_fk-1].descripcion }}</td>
-                    <td>{{ service.listaClientes[cita.cliente_fk-1].nombre || '' }}</td>
-                    <td>{{ service.listaEmpresas[cita.empresaCliente_fk-1].nombre || 'no' }}</td>
-                    <td>{{ service.listaDepartamentosResponsables[cita.departamentoResponsable_fk-1].nombre || 'no' }}</td>
-                    <td>{{ cita.asuntoDeCita }}</td>
-                    <td>{{ cita.comentarios }}</td>
-                    <td>{{ service.listaResponsables[cita.responsable_fk-1].nombre || 'no' }}</td>
-                    <td>{{ cita.fechaParaLaCita | date: 'dd/MM/yyyy' }}</td>
-                    <td>{{ service.listaEstatusDeAtencion[cita.estatusDeLaAtencion_fk-1].descripcion || 'no' }}</td>
-                    <td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ cita.folio }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ cita.fechaDeSolicitud | date: 'dd/MM/yyyy' }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaTiposDeCita[cita.tipoDeCita_fk-1].descripcion }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaClientes[cita.cliente_fk-1].nombre }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaEmpresas[cita.empresaCliente_fk-1].nombre }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaDepartamentosResponsables[cita.departamentoResponsable_fk-1].nombre }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ cita.asuntoDeCita }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ cita.comentarios }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaResponsables[cita.responsable_fk-1].nombre }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ cita.fechaParaLaCita | date: 'dd/MM/yyyy' }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">{{ service.listaEstatusDeAtencion[cita.estatusDeLaAtencion_fk-1].descripcion }}</td>
+                    <td *ngIf="service.listaCitas.length != 0">
                         <i class="far fa-edit fa-lg text-info mx-1" (click)="editarRegistro(cita)"></i>
                         <i class="far fa-trash-alt fa-lg text-danger mx-1" (click)="eliminarRegistro(cita.folio)"></i>
+                    </td>
+                    <td *ngIf="service.listaCitas.length == 0" colspan="12" class="sin-registros">
+                        No hay registros
                     </td>
                 </tr>
             </tbody>
