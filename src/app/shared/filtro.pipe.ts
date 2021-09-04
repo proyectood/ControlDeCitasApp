@@ -10,7 +10,9 @@ export class FiltroPipe implements PipeTransform {
     if(buscarTxt == ''){
       return citas;
     }
+
     let resultadoDeBusqueda = [];
+
     for (let i = 0; i < citas.length; i++) {
       let cita = citas[i];
       let tipoInx = parseInt(cita.tipoDeCita_fk);

@@ -41,6 +41,7 @@ export class CitasService {
   listaTiposDeCita: TipoDeCita[] = [];
   listaEstatusDeAtencion: EstatusDeLaAtencion[] = [];
   listaResponsables: Responsable[] = [];
+  fechaCita: string = '';
   buscarTxt: string = "";
 
   obtenerCitas(){
@@ -99,17 +100,21 @@ export class CitasService {
   }
 
   actualizarTodosLosDatos(){
-    this.obtenerCitas()
-    this.obtenerClientes()
-    this.obtenerEmpresas()
-    this.obtenerDepartamentosResponsables()
-    this.obtenerTiposDeCita()
-    this.obtenerEstatusDeAtencion()
-    this.obtenerResponsables()
+    this.obtenerClientes();
+    this.obtenerEmpresas();
+    this.obtenerDepartamentosResponsables();
+    this.obtenerTiposDeCita();
+    this.obtenerEstatusDeAtencion();
+    this.obtenerResponsables();
+    this.obtenerCitas();
   }
 
   revisionFolio(){
     this.folioRevision = this.formData.folio;
+  }
+
+  limpiarFormularioCitas(){
+    this.formData = new Citas();
   }
 
 }
